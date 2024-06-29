@@ -1,4 +1,4 @@
-# email-service
+# email-hub
 An open source service for managing email related operations built on top of Amazon SES
 
 # Nuxt 3 Minimal Starter
