@@ -1,9 +1,5 @@
 <template>
   <NoDataToShow :heading="noData.heading" :description="noData.description" />
-  <NoDataToShow :heading="noData.heading" :description="noData.description" />
-  <NoDataToShow :heading="noData.heading" :description="noData.description" />
-  <NoDataToShow :heading="noData.heading" :description="noData.description" />
-  <NoDataToShow :heading="noData.heading" :description="noData.description" />
 </template>
 
 <script setup lang="ts">

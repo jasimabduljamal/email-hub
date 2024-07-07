@@ -10,14 +10,17 @@
         }"
       >
         <template #header>
-          <div class="flex items-center justify-between">
-            <h3 class="pl-5 font-bold text-gray-700 dark:text-gray-200">Email Hub</h3>
+          <div class="ml-3 flex items-center">
             <UButton
               color="gray"
               variant="ghost"
               icon="i-heroicons-x-mark-20-solid"
               @click="isHamMenuOpen = false"
             />
+            <div class="flex flex-row items-center py-3 pl-5">
+              <UIcon class="size-7" name="i-heroicons-inbox-stack" />
+              <h3 class="pl-3 font-bold text-gray-700 dark:text-gray-200">Email Hub</h3>
+            </div>
           </div>
         </template>
 
@@ -50,11 +53,21 @@
       base: 'py-2',
     }"
     class="px-3 pb-3 h-screen"
-  />
+  >
+    <template #default="{ link }">
+      <span v-if="isNavCollapsed" class="group-hover:text-primary relative">{{
+        link.label
+      }}</span>
+    </template>
+    <template #icon="{ link }">
+      <UIcon :name="link.icon" />
+    </template>
+  </UVerticalNavigation>
 </template>
 
 <script setup lang="ts">
 const isHamMenuOpen = useToggleSideBar();
+const isNavCollapsed = useNavCollapser();
 const links = [
   [
     {
@@ -76,6 +89,11 @@ const links = [
       label: "Webhooks",
       icon: "i-heroicons-arrows-up-down",
       to: "/webhooks",
+    },
+    {
+      label: "Audience",
+      icon: "i-heroicons-users",
+      to: "/audience",
     },
     {
       label: "Settings",
