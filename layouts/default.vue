@@ -17,13 +17,13 @@
       class="relative border-r border-gray-200 dark:border-gray-800 max-sm:hidden"
     > -->
       <UButton
-        class="absolute bottom-7 -left-3.5 bg-gray-200 dark:bg-gray-800 rounded-full"
+        class="absolute bottom-7 -left-[10px] bg-gray-200 dark:bg-gray-800 rounded-full"
         :icon="
           !isNavCollapsed
             ? 'i-heroicons-chevron-double-left'
             : 'i-heroicons-chevron-double-right'
         "
-        size="sm"
+        size="xs"
         color="gray"
         square
         variant="link"
@@ -63,10 +63,12 @@ function toggleNavCollapser() {
 }
 
 function mouseDown() {
+  sideNavbarEle!.style.transition = "none";
   isResizable = true;
 }
 
 function mouseUp() {
+  sideNavbarEle!.style.transition = "width 0.5s ease";
   isResizable = false;
 }
 

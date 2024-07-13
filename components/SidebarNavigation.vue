@@ -79,7 +79,7 @@
   </ClientOnly>
   <nav
     id="sideNavbar"
-    class="flex flex-col max-sm:hidden shrink-0"
+    class="flex flex-col max-sm:hidden shrink-0 transition-[width] ease duration-500"
     :style="{ width: isNavCollapsed ? '65px' : '240px' }"
   >
     <div class="flex flex-row items-center py-3 pl-4">
@@ -92,11 +92,17 @@
       <ul class="px-3 pb-3 flex flex-col gap-1.5">
         <li v-for="link in links">
           <NuxtLink
-            class="group flex items-center gap-1.5 py-2 px-2.5 w-full rounded-md font-medium text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800/50"
+            class="flex items-center gap-1.5 py-2 px-2.5 w-full rounded-md font-medium text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800/50"
             active-class="text-gray-900 dark:text-white bg-gray-100 dark:bg-gray-800"
             :to="link.to"
           >
-            <UIcon class="w-5 h-5" :name="link.icon" />
+            <UTooltip
+              :text="link.label"
+              :prevent="!isNavCollapsed"
+              :popper="{ placement: 'right' }"
+            >
+              <UIcon class="w-5 h-5" :name="link.icon" />
+            </UTooltip>
             <span class="truncate relative" v-if="!isNavCollapsed">{{ link.label }}</span>
           </NuxtLink>
         </li>
@@ -104,11 +110,17 @@
       <ul class="px-3 pb-3 flex flex-col gap-1.5">
         <li v-if="secondaryLinks.length > 0" v-for="link in secondaryLinks">
           <NuxtLink
-            class="group flex items-center gap-1.5 py-2 px-2.5 w-full rounded-md font-medium text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800/50"
+            class="flex items-center gap-1.5 py-2 px-2.5 w-full rounded-md font-medium text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800/50"
             active-class="text-gray-900 dark:text-white bg-gray-100 dark:bg-gray-800"
             :to="link.to"
           >
-            <UIcon class="w-5 h-5" :name="link.icon" />
+            <UTooltip
+              :text="link.label"
+              :prevent="!isNavCollapsed"
+              :popper="{ placement: 'right' }"
+            >
+              <UIcon class="w-5 h-5" :name="link.icon" />
+            </UTooltip>
             <span class="truncate relative" v-if="!isNavCollapsed">{{ link.label }}</span>
           </NuxtLink>
         </li>
@@ -156,8 +168,4 @@ const secondaryLinks = [
   },
 ];
 </script>
-<style scoped>
-#sideNavbar {
-  transition: all 0.5s ease;
-}
-</style>
+<style scoped></style>
